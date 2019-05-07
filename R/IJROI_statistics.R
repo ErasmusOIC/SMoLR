@@ -25,7 +25,7 @@ IJROI_subset.default <- function(x,file,pxsize=5){
     data <- RImageJROI::read.ijzip(file)
     data <- llply(data,function(x){
       if (x$strType=="traced"){
-        x$strType="polygon"
+        x$strType <- "polygon"
       }
       return(x)
     })
@@ -40,7 +40,7 @@ IJROI_subset.default <- function(x,file,pxsize=5){
     })
     
     
-    maskdata<-ij2spatstat(data)  
+    maskdata<- llply(data, function(x){return(ij2spatstat(x))})   
     
     x <- llply(maskdata,function(y){
       x <- x[inside.owin(x = C,y = D,w=y),]
