@@ -31,16 +31,23 @@ IJROI_subset.default <- function(x,file,pxsize=5){
     })
     class(data) <- "ijzip"
     
-    data <- llply(data, function(x){
-      area <- Area.xypolygon( list(x = x$coords[, 1], y = x$coords[, 2]))
-      if ((area<0 && x$strType == "polygon") || (area>0 && x$strType == "freehand")  ){
-        x$coords <- x$coords[ nrow(x$coords):1, ]
-      }
-      return(x)
-    })
     
     
-    maskdata<- llply(data, function(x){return(ij2spatstat(x))})   
+    
+    maskdata<- llply(data, function(x){ 
+      
+      
+      fwddata <- x
+      revdata <- fwddata
+      revdata$coords <- revdata$coords[nrow(revdata$coords):1,]
+      
+      maskdata <- tryCatch( {ij2spatstat(fwddata)} , 
+                            error = function(e) {  return( ij2spatstat(revdata) ) } )
+      
+      return(maskdata)
+    
+      })   
+    
     
     x <- llply(maskdata,function(y){
       x <- x[inside.owin(x = C,y = D,w=y),]
@@ -55,12 +62,15 @@ IJROI_subset.default <- function(x,file,pxsize=5){
     if(data$strType=="traced"){
       data$strType <- "ploygon"
     }
-    area <- Area.xypolygon( list(x = data$coords[, 1], y = data$coords[, 2]))
-    if ((area<0 && data$strType == "polygon") || (area>0 && data$strType == "freehand")){
-      data$coords <- data$coords[ nrow(data$coords):1, ]
-    }
     
-    maskdata<-ij2spatstat(data)  
+    fwddata <- data
+    revdata <- fwddata
+    revdata$coords <- revdata$coords[nrow(revdata$coords):1,]
+    
+    
+    maskdata <- tryCatch( {ij2spatstat(fwddata)} , 
+                          error = function(e) {  return( ij2spatstat(revdata) ) } )
+     
     isin<-inside.owin(x = C,y = D,w=maskdata)
     x <- x[isin,]
   }
