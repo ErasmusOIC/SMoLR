@@ -33,7 +33,7 @@ IJROI_subset.default <- function(x,file,pxsize=5){
     
     data <- llply(data, function(x){
       area <- Area.xypolygon( list(x = x$coords[, 1], y = x$coords[, 2]))
-      if (area>0){
+      if ((area<0 && x$strType == "polygon") || (area>0 && x$strType == "freehand")  ){
         x$coords <- x$coords[ nrow(x$coords):1, ]
       }
       return(x)
@@ -52,8 +52,11 @@ IJROI_subset.default <- function(x,file,pxsize=5){
     D <- x$Y/pxsize
     C <- x$X/pxsize
     data <- read.ijroi(file)
+    if(data$strType=="traced"){
+      data$strType <- "ploygon"
+    }
     area <- Area.xypolygon( list(x = data$coords[, 1], y = data$coords[, 2]))
-    if (area>0){
+    if ((area<0 && data$strType == "polygon") || (area>0 && data$strType == "freehand")){
       data$coords <- data$coords[ nrow(data$coords):1, ]
     }
     
