@@ -8,8 +8,10 @@ We recommend the use of Rstudio to work with SMoLR: https://www.rstudio.com/prod
 ```R
 install.packages("devtools")  
 library(devtools)  
-source("https://bioconductor.org/biocLite.R")  
-biocLite("EBImage")  
+if (!requireNamespace("BiocManager", quietly = TRUE)){
+    install.packages("BiocManager")
+}
+BiocManager::install("EBImage") 
 
 install_github("ErasmusOIC/SMoLR", build_vignettes = TRUE)
 
