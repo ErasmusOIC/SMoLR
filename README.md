@@ -3,6 +3,7 @@ SMoLR is a software package to analyze single-molecule super resolution data in 
 
 ## Installation
 R can be installed at: https://www.r-project.org/
+For building SMoLR in R>=4.0.0 in windows rTools is needed and can be found here: https://cran.r-project.org/bin/windows/Rtools/
 
 We recommend the use of Rstudio to work with SMoLR: https://www.rstudio.com/products/rstudio/#Desktop
 ```R
