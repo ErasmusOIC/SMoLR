@@ -94,7 +94,7 @@ export(rotate3d,
        SMOLR_KDE_SET_THR
        )
 
-importFrom("spatstat", owin,disc,ppp,inside.owin)
+importFrom("spatstat.geom", owin,disc,ppp,inside.owin)
 importFrom("spatstat.utils", Area.xypolygon)
 importFrom("tiff",readTIFF,writeTIFF)
 importFrom("RImageJROI",read.ijzip,read.ijroi)
