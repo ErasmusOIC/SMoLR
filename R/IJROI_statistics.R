@@ -60,7 +60,7 @@ IJROI_subset.default <- function(x,file,pxsize=5){
     C <- x$X/pxsize
     data <- read.ijroi(file)
     if(data$strType=="traced"){
-      data$strType <- "ploygon"
+      data$strType <- "polygon"
     }
     
     fwddata <- data
