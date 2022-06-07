@@ -49,7 +49,16 @@ SMOLR_LOAD(file.path(getwd(),"thunderstorm"),statistics=F)
 head(localizations[[1]])
 ```
 
-
+## NEW 07-06-2022 Fast and flexible new import function
+Create your own import profile to flexibly keep loading your data even if the data format is changed by third parties.
+Create the profile with the headers used in the data file and the column number of the x, y, precision and channel columns respectivily. Shown below for imaginary data format.
+```R
+profile <- SMOLR_PROFILE("profile_name",c("ID","X","Y","First Frame","Precision","Channel","fit"),c(2,3,5,6),skip=0)
+```
+Import the data using the profile made. This import is using the fast fread function of data.table.
+```R
+data <- SMOLR_FAST_IMPORT(file,profile,channels)
+```
 
 ## Bug reports and feature requests
 Bug reports, feature requests, or any other issues with the package can be reported at github.
