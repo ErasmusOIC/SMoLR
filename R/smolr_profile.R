@@ -31,5 +31,9 @@ smolr2CreateProfile <- function(name,original,xypc,skip=0){
 }
 
 SMOLR_PROFILE <- function(name,original,xycp,skip){
-  UseMethod("smolr2CreateProfile")
+  UseMethod("SMOLR_PROFILE")
+}
+
+SMOLR_PROFILE.default <- function(name,original,xycp,skip=0){
+  smolr2CreateProfile(name,original,xycp,skip)
 }

@@ -57,6 +57,10 @@ S3method(IJROI_subset, list)
 S3method(SMOLR_KDE_SET_THR, default)
 S3method(SMOLR_KDE_SET_THR, list)
 
+S3method(SMOLR_PROFILE,default)
+
+S3method(SMOLR_FAST_IMPORT,default)
+
 import(plotrix, 
        KernSmooth, 
        tools,
@@ -67,7 +71,8 @@ import(plotrix,
        pals, 
        BiocStyle,
        manipulateWidget,
-       EBImage)
+       EBImage
+       )
 
 
 export(rotate3d,
@@ -91,7 +96,9 @@ export(rotate3d,
        dbscan_to_localizations,
        IJROI_subset,
        dynamicplot,
-       SMOLR_KDE_SET_THR
+       SMOLR_KDE_SET_THR,
+       SMOLR_PROFILE,
+       SMOLR_FAST_IMPORT
        )
 
 importFrom("spatstat.geom", owin,disc,ppp,inside.owin)
@@ -100,3 +107,4 @@ importFrom("tiff",readTIFF,writeTIFF)
 importFrom("RImageJROI",read.ijzip,read.ijroi)
 importFrom("pander",pander)
 importFrom("pracma",polyarea)
+importFrom("data.table",fread)

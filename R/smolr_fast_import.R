@@ -60,10 +60,13 @@ smolr2import <- function(file,profile,channels=NULL){
 
 }
 
-SMOLR_FAST_IMPORT <- function(file,profile,channels=NULL){
-  UseMethod("smolr2import")
+SMOLR_FAST_IMPORT <- function(file,profile,channels){
+  UseMethod("SMOLR_FAST_IMPORT")
 }
 
+SMOLR_FAST_IMPORT.default <- function(file,profile,channels=NULL){
+  smolr2import(file,profile,channels)
+}
 
 
 
