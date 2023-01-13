@@ -10,7 +10,7 @@ Create a SMOLR Profile
 This function creates a smolr profile to be used by the SMOLR_FAST_IMPORT function. This allows you to keep your data importing up to date even if the format of the data is changed by third parties.
 }
 \usage{
-SMOLR_PROFILE(name, original, xycp, skip)
+SMOLR_PROFILE(name, original, xypc, skip)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,9 +22,9 @@ String with the name of the profile
 %%     ~~Describe \code{original} here~~
 A vector containing Names of the headers of the original file
 }
-  \item{xycp}{
+  \item{xypc}{
 %%     ~~Describe \code{xycp} here~~
-A vector containing the column numbers of the columns containing the x, y, channel and precision values respectivily  
+A vector containing the column numbers of the columns containing the x, y, precision and channel values respectivily  
 }
   \item{skip}{
 %%     ~~Describe \code{skip} here~~
