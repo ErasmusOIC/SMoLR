@@ -14,7 +14,7 @@ if (!requireNamespace("BiocManager", quietly = TRUE)){
 }
 BiocManager::install("EBImage") 
 
-install_github("ErasmusOIC/SMoLR", build_vignettes = TRUE)
+install_github("ErasmusOIC/SMoLR", build_vignettes = FALSE)
 
 library(SMoLR)  
 ```
