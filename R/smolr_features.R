@@ -16,10 +16,10 @@ smolr_features <- function(x, filter=NULL, filter_value=NULL){
   parameters$channel[i] <- x[[3]]$channel[i]
   if(is.null(features[[i]])){parameters$No_features[i] <- 0}
   if(!is.null(features[[i]])){parameters$No_features[i] <- nrow(features[[i]])}
-  if(is.null(filter) || is.null(filter_value) || is.na(tryCatch(data.frame(features[[i]])[filter], error = function(e) NA)) ) {parameters$filtered_features[i] <- 0
+  if(is.null(filter) || is.null(filter_value) || is.na(tryCatch(data.frame(features[[i]])[filter], error = function(e) NA))[1] ) {parameters$filtered_features[i] <- 0
                                                                                   parameters$filtered_features_id[i] <- 0}
   
-  if(!is.null(filter) && !is.null(filter_value) && !is.na(tryCatch(data.frame(features[[i]])[filter], error = function(e) NA))) {parameters$filtered_features[i] <- length(data.frame(features[[i]])[filter][data.frame(features[[i]])[filter]>filter_value])
+  if(!is.null(filter) && !is.null(filter_value) && !is.na(tryCatch(data.frame(features[[i]])[filter], error = function(e) NA))[1]) {parameters$filtered_features[i] <- length(data.frame(features[[i]])[filter][data.frame(features[[i]])[filter]>filter_value])
                                                   parameters$filtered_features_id[i] <- paste0(which(data.frame(features[[i]])[filter]>filter_value),collapse=" ")}
   
   }
